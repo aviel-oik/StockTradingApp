@@ -33,17 +33,22 @@ function validParam(operation, identifier, stockNumber) {
 }
 
 function applyOperation(operation, identifier, stockNumber, stockCategory) {
+    let operationResult = []
     for (let stock of stockMarket.stocks) {
         if (identifier === stock.id || identifier === stock.name) {
             stockMarket.lastUpdated = new Date().toISOString()
-            stock.availableStocks -= stockNumber
+            operation === "buy" ? stock.availableStocks -= stockNumber : stock.availableStocks += stockNumber
             stock.previousPrices.push(stock.currentPrice)
             operation === "buy" ? stock.currentPrice += stock.currentPrice * 0.05 : stock.currentPrice -= stock.currentPrice * 0.05
+            operationResult.push(stock)
         }
-        if (stock.category === stockCategory && (identifier === stock.id || identifier === stock.name)) {
+        if (stock.category === stockCategory && !(identifier === stock.id || identifier === stock.name)) {
             stockMarket.lastUpdated = new Date().toISOString()
             stock.previousPrices.push(stock.currentPrice)
             operation === "buy" ? stock.currentPrice += stock.currentPrice * 0.01 : stock.currentPrice -= stock.currentPrice * 0.01
+            operationResult.push(stock)
         }
     }
+    console.log("Here are all the stocks affected by the transaction: ")
+    console.table(operationResult)
 }
