@@ -1,6 +1,6 @@
 import { stockMarket } from "../dataBase/stoks.js"
 
-export function filterStocksByPrice(givenPrice, above) {
+export default function filterStocksByPrice(givenPrice, above) {
     if (isNaN(givenPrice)) {
         console.log("You need to enter a number !")
         return

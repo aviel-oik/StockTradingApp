@@ -1,6 +1,6 @@
 import { stockMarket } from "../dataBase/stoks.js"
 
-export function searchStock(identifier) {
+export default function searchStock(identifier) {
     let searchResult = []
     for (let stock of stockMarket.stocks)
         if (identifier === stock.id || identifier === stock.name)

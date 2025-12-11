@@ -1,9 +1,9 @@
 import { stockMarket } from "../dataBase/stoks.js"
 import readline from "readline-sync";
-import { searchStock } from "./searchFeature.js"
+import searchStock from "./searchFeature.js"
 
 
-export function OperateOnStock(operation, identifier) {
+export default function OperateOnStock(operation, identifier) {
     const stockNumber = readline.questionInt("How many units to buy or sell ? ")
     if (!validParam(operation, identifier, stockNumber))
         return
