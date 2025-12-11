@@ -22,5 +22,6 @@ function topStocks() {
         topStock.push({ stock: stock, growth: growth })
     }
     return topStock
+
 }
 
